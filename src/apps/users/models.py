@@ -1,10 +1,15 @@
+from datetime import date
+
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import pre_save
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey, \
+    GenericRelation
 
+from timetable.models import Timetable
 from users.exceptions import RoleNotFound
 
 ROLE_NAMES = {
@@ -193,8 +198,15 @@ class Doctor(Role):
             sender.objects.filter(
                 is_chief_doctor=True).update(is_chief_doctor=False)
 
-    def get_free_working_hours(self):
-        pass
+    def get_available_hours(self, date):
+        timetable = Timetable.get_default()
+        working_hours = timetable.get_working_hours(date)
+        if working_hours.exists():
+            return working_hours.exclude(
+                Q(visit__doctor_id=self.pk) &
+                Q(visit__date=date)
+            )
+        return working_hours
 
 pre_save.connect(sender=Doctor, receiver=Doctor.pre_save)
 

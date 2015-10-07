@@ -149,14 +149,6 @@
   "model": "timetable.workinghour"
 },
 {
-  "pk": 6,
-  "fields": {
-    "end": "14:00:00",
-    "begin": "13:00:00"
-  },
-  "model": "timetable.workinghour"
-},
-{
   "pk": 7,
   "fields": {
     "end": "15:00:00",

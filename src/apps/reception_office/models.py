@@ -15,7 +15,12 @@ class Visit(models.Model):
         'users.Doctor', blank=True,  verbose_name='Врач')
 
     def __str__(self):
-        return self.date_begin.strftime('%d %m %Y %H:%m')
+        return '%s | на время: %s | принимает %s | %s' % (
+            self.date.strftime('%d.%m.%Y'),
+            self.visit_hour,
+            self.doctor,
+            self.patient
+        )
 
     class Meta:
         verbose_name = 'Прием'

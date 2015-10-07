@@ -40,11 +40,11 @@ class Timetable(models.Model):
         if instance.is_default:
             sender.objects.filter(is_default=True).update(is_default=False)
 
-    def get_working_hours_available(self, date):
+    def get_working_hours(self, date):
         day = self.working_days.filter(day_of_week=date.weekday())
         if day.exists():
             return day.first().working_hours.all()
-        return
+        return Timetable.objects.none()
 
 pre_save.connect(sender=Timetable, receiver=Timetable.pre_save)
 
