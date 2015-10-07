@@ -1,0 +1,1 @@
+class RoleNotFound(Exception): pass

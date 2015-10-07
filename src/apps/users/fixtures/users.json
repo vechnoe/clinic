@@ -1,0 +1,137 @@
+[
+{
+  "pk": 1,
+  "fields": {
+    "patronymic": "",
+    "role_object_id": null,
+    "role_content_type": null,
+    "email": "admin@site.com",
+    "last_login": "2015-10-06T15:34:12Z",
+    "is_superuser": true,
+    "is_active": true,
+    "permissions": [],
+    "password": "pbkdf2_sha256$20000$bM4JJzZQK3wn$MkAPyjze0RM22t5xY0KOnijYVfRX/P9rwJMzD/uKL8I=",
+    "first_name": "",
+    "last_name": ""
+  },
+  "model": "users.user"
+},
+{
+  "pk": 2,
+  "fields": {
+    "patronymic": "\u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447",
+    "role_object_id": 1,
+    "role_content_type": 12,
+    "email": "ivan@site.com",
+    "last_login": null,
+    "is_superuser": false,
+    "is_active": true,
+    "permissions": [],
+    "password": "12345",
+    "first_name": "\u0418\u0432\u0430\u043d",
+    "last_name": "\u0418\u0432\u0430\u043d\u043e\u0432"
+  },
+  "model": "users.user"
+},
+{
+  "pk": 3,
+  "fields": {
+    "patronymic": "\u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447",
+    "role_object_id": 1,
+    "role_content_type": 14,
+    "email": "petr@site.com",
+    "last_login": null,
+    "is_superuser": false,
+    "is_active": true,
+    "permissions": [],
+    "password": "12345",
+    "first_name": "\u041f\u0435\u0442\u0440",
+    "last_name": "\u041f\u0435\u0442\u0440\u043e\u0432"
+  },
+  "model": "users.user"
+},
+{
+  "pk": 4,
+  "fields": {
+    "patronymic": "\u041f\u0435\u0442\u0440\u043e\u0432\u0438\u0447",
+    "role_object_id": 2,
+    "role_content_type": 14,
+    "email": "grigoriy@site.com",
+    "last_login": null,
+    "is_superuser": false,
+    "is_active": true,
+    "permissions": [],
+    "password": "12345",
+    "first_name": "\u0413\u0440\u0438\u0433\u043e\u0440\u0438\u0439",
+    "last_name": "\u041a\u0443\u0437\u043d\u0435\u0446\u043e\u0432"
+  },
+  "model": "users.user"
+},
+{
+  "pk": 5,
+  "fields": {
+    "patronymic": "\u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432\u043d\u0430",
+    "role_object_id": 3,
+    "role_content_type": 14,
+    "email": "olga@site.com",
+    "last_login": null,
+    "is_superuser": false,
+    "is_active": true,
+    "permissions": [],
+    "password": "12345",
+    "first_name": "\u041e\u043b\u044c\u0433\u0430",
+    "last_name": "\u041f\u0435\u0442\u0440\u043e\u0432\u0430"
+  },
+  "model": "users.user"
+},
+{
+  "pk": 1,
+  "fields": {},
+  "model": "users.patient"
+},
+{
+  "pk": 1,
+  "fields": {
+    "name": "\u041f\u0441\u0438\u0445\u0438\u0430\u0442\u0440"
+  },
+  "model": "users.speciality"
+},
+{
+  "pk": 2,
+  "fields": {
+    "name": "\u0412\u0435\u043d\u0435\u0440\u043e\u043b\u043e\u0433"
+  },
+  "model": "users.speciality"
+},
+{
+  "pk": 3,
+  "fields": {
+    "name": "\u041d\u0435\u0440\u0432\u043e\u043f\u0430\u0442\u043e\u043b\u043e\u0433"
+  },
+  "model": "users.speciality"
+},
+{
+  "pk": 1,
+  "fields": {
+    "is_chief_doctor": true,
+    "speciality": 1
+  },
+  "model": "users.doctor"
+},
+{
+  "pk": 2,
+  "fields": {
+    "is_chief_doctor": false,
+    "speciality": 2
+  },
+  "model": "users.doctor"
+},
+{
+  "pk": 3,
+  "fields": {
+    "is_chief_doctor": false,
+    "speciality": 3
+  },
+  "model": "users.doctor"
+}
+]
