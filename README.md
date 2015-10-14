@@ -36,27 +36,34 @@ Django Rest Framework 3.0
 
 Описание REST API
 -----------------
-* POST /patients -- создание пациента и автоматическая авторизация
-* GET /visits -- все приемы авторизованного пользователя
-* POST /visits -- создание приема
-* GET /doctors -- все врачи поликлиники
-* GET /doctors/1 -- врач с id 1
-* GET /doctors/1/hour/2015-10-10 -- свободные часы приема для врача с id 1
-* GET /doctors/1/visits -- приемы авторизованного пользователя у врача с id 1
-* POST /doctors/1/visits -- создание приема у врача с id 1
+* /api/admin/ -- вход в Django-админпанель
+* POST /api/rest-auth/login/ -- логин
+* пустой POST /api/rest-auth/logout/ -- выход
+* POST /api/patients -- создание пациента и автоматическая авторизация
+* GET /api/visits -- все приемы авторизованного пользователя
+* POST /api/visits -- создание приема
+* GET /api/doctors -- все врачи поликлиники
+* GET /api/doctors/1 -- врач с id 1
+* GET /api/doctors/1/hour/2015-10-10 -- свободные часы приема для врача с id 1
+* GET /api/doctors/1/visits -- приемы авторизованного пользователя у врача с id 1
+* POST /api/doctors/1/visits -- создание приема у врача с id 1
 
 Установка
 ---------
 ```
 $ git clone git://github.com/vechnoe/clinic
 $ cd clinic
-$ virtualenv env --no-site-packages
-$ source env/virtualenv/bin/activate
+$ virtualenv -p python3.4 env --no-site-packages
+$ source env/bin/activate
 $ make install
 $ make create_database
-$ make create_admin
 $ make run
 ```
+
+Логин админа admin@site.com
+Пароль админа 12345
+
+Все тестовые пользователи имеют пароль: 12345
 
 Лицензия
 --------
