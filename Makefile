@@ -33,13 +33,7 @@ shell:
 	./manage.py shell
 
 install:
-	( \
-	virtualenv env --no-site-packages; \
-	source env/virtualenv/bin/activate; \
-	pip install -r requirements.txt; \
-	make create_database; \
-	make create_admin; \
-	make run; \
-	)
+	pip install -r requirements.txt
+
 
 
