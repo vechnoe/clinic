@@ -1,0 +1,34 @@
+<div>
+  <div class="input-group">
+    <input type="text" class="form-control"
+           min-date="minDate"
+           current-text="{{currentText}}"
+           clear-text="{{clearText}}"
+           close-text="{{closeText}}"
+
+           date-disabled="disabled(date, mode)"
+           datepicker-options="{
+             datepickerMode: 'day',
+             minMode: day,
+             startingDay: 1
+           }"
+
+           id="disabledInput"
+           datepicker-popup="{{settings.dateFormat}}"
+           ng-model="selectedDate"
+           is-open="opened"
+           placeholder="{{settings.inputPlaceholder}}"
+           disabled/>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default"
+              ng-click="openCalendar($event)">
+        <i class="glyphicon glyphicon-calendar"></i>
+      </button>
+    </span>
+  </div>
+</div>
+
+
+
+
+

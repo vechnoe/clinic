@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="text-center page-header">Назначенные приемы</h3>
+        <table class="table table-striped">
+          <thead>
+            <th>Дата</th>
+            <th>Час приема</th>
+            <th>Пациент</th>
+            <th>Специализация</th>
+            <th>Врач</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="visit in vm.visits">
+            <td>{{visit.date | amDateFormat:'DD MMMM YYYY'}}</td>
+            <td>{{visit.visitHour.hour}}</td>
+            <td>{{visit.patient.user.fullName}}</td>
+            <td>{{visit.doctor.speciality.name}}</td>
+            <td>{{visit.doctor.user.fullName}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <h3 class="text-center"
+            ng-hide="vm.visits.length">Нет назначенных приемов</h3>
+      </div>
+    </div>
+  </div>
+</div>

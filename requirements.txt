@@ -1,4 +1,9 @@
 Django==1.8
+djangorestframework==3.2.4
+django-rest-auth
+djangorestframework-camel-case
+drf-nested-routers
+python-dateutil
 
 ipdb
 nose

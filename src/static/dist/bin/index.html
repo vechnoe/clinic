@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="clinic" ng-controller="AppController">
+  <head>
+    <title ng-bind="pageTitle"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonts -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="static/vendor/angular-ui-notification/dist/angular-ui-notification.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/vendor/angular-loading-bar/build/loading-bar.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/assets/clinic-0.0.1.css" />
+
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="static/assets/clinic-0.0.1.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="menuCollapsed = true"
+                  ng-click="menuCollapsed =! menuCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" collapse="menuCollapsed">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#">
+                Поликлиника
+              </a>
+            </li>
+            <li>
+              <visits-link-directive></visits-link-directive>
+            </li>
+            <li>
+              <reception-button-directive></reception-button-directive>
+            </li>
+          </ul>
+          <login-menu-directive></login-menu-directive>
+        </div>
+      </div>
+    </div>
+    <div class="container" ui-view="main"></div>
+    <div class="container">
+      <footer class="footer">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="footer-inner">
+              <p>
+                © 2015
+                <a href="http://www.linkedin.com/in/MaximChernyatevich">
+                  Максим Чернятевич
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

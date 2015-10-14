@@ -71,14 +71,20 @@ class WorkingHour(models.Model):
     begin = models.TimeField(verbose_name='Начало рабочего часа')
     end = models.TimeField(verbose_name='Конец рабочего часа')
 
+    class Meta:
+        verbose_name = 'Рабочий час'
+        verbose_name_plural = 'Рабочие часы'
+
     def __str__(self):
+        return self.hour
+
+    @property
+    def hour(self):
         return '%s–%s' % (
             self.begin.strftime("%H:%S"),
             self.end.strftime("%H:%S")
         )
 
-    class Meta:
-        verbose_name = 'Рабочий час'
-        verbose_name_plural = 'Рабочие часы'
+
 
 

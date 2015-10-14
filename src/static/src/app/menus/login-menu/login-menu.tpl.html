@@ -1,0 +1,21 @@
+<div class="login-menu">
+  <span ng-show="isLoggedIn" class="navbar-text navbar-right dropdown" dropdown>
+    <i class="glyphicon glyphicon-user"></i>
+    <a href="" class="dropdown-toggle navbar-link" dropdown-toggle>
+        {{currentUser}}
+    </a>
+    <ul class="dropdown-menu" dropdown-menu>
+      <li>
+        <a href="" ng-click="logout()">Выйти</a>
+      </li>
+    </ul>
+  </span>
+  <span ng-show="!isLoggedIn" class="navbar-text navbar-right">
+    <a ng-show="state.current.name === 'registration'"
+       href="" class="navbar-link"
+       ng-click="login()">Войти</a>
+    <a ng-show="state.current.name === 'login'"
+       href="" class="navbar-link"
+       ng-click="register()">Зарегестрироваться</a>
+  </span>
+</div>

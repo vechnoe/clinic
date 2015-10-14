@@ -1,0 +1,12 @@
+{
+  "jasmine": true,
+  "esnext": true,
+  "camelcase" : true,
+  "undef": true,
+  "quotmark": "single",
+  "maxlen": 80,
+  "trailing": true,
+  "curly": true,
+  "predef": ["angular", "require", "module", "inject"],
+  "devel": true
+}

@@ -1,19 +1,16 @@
 export PYTHONPATH:=.:$(PYTHONPATH)
 export DJANGO_SETTINGS_MODULE:=src.settings
 
-install:
-	pip install -r requirements.txt
-
 create_database:
 	./manage.py syncdb --noinput
 	./manage.py migrate --noinput
 	find src/apps -name '*.json' -exec ./manage.py loaddata {} \;
 
 create_admin:
-	echo "from users.models import User; User.objects.create_superuser('admin@site.com', 'pass')" | python manage.py shell
+	echo "from users.models import User; User.objects.create_superuser('admin@site.com', '12345')" | python manage.py shell
 
 test:
-	nose -v
+	nosetests -v
 
 coverage:
 	coverage erase
@@ -34,5 +31,15 @@ collect:
 
 shell:
 	./manage.py shell
+
+install:
+	( \
+	virtualenv env --no-site-packages; \
+	source env/virtualenv/bin/activate; \
+	pip install -r requirements.txt; \
+	make create_database; \
+	make create_admin; \
+	make run; \
+	)
 
 

@@ -8,11 +8,12 @@ class Visit(models.Model):
     date = models.DateField(
         verbose_name='Дата приема', null=True)
     visit_hour = models.ForeignKey(
-        'timetable.WorkingHour', blank=True, verbose_name='Назначенный час')
+        'timetable.WorkingHour', blank=True, null=True,
+        verbose_name='Назначенный час')
     patient = models.ForeignKey(
-        'users.Patient', blank=True, verbose_name='Пациент')
+        'users.Patient', blank=True, null=True, verbose_name='Пациент')
     doctor = models.ForeignKey(
-        'users.Doctor', blank=True,  verbose_name='Врач')
+        'users.Doctor', blank=True, null=True,  verbose_name='Врач')
 
     def __str__(self):
         return '%s | на время: %s | принимает %s | %s' % (

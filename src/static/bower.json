@@ -1,0 +1,21 @@
+{
+  "name": "clinic",
+  "version": "0.0.1",
+  "devDependencies": {
+    "angular": "1.4.5",
+    "angular-mocks": "x.x.x",
+    "angular-bootstrap": "0.13.0",
+    "angular-ui-router": "0.2.15",
+    "bootstrap": "3.3.5"
+  },
+  "dependencies": {
+    "angular-moment": "x.x.x",
+    "angular-resource": "x.x.x",
+    "angular-ui-notification": "0.0.12",
+    "angular-loading-bar": "x.x.x",
+    "bootswatch": "x.x.x",
+    "moment": "2.10.6",
+    "angular-local-storage": "x.x.x"
+
+  }
+}

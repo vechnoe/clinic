@@ -1,137 +1,304 @@
 [
 {
-  "pk": 1,
+  "model": "users.user",
   "fields": {
-    "patronymic": "",
-    "role_object_id": null,
-    "role_content_type": null,
-    "email": "admin@site.com",
-    "last_login": "2015-10-06T15:34:12Z",
-    "is_superuser": true,
+    "password": "pbkdf2_sha256$20000$h8dDDvlasOlp$S0WHQrlXtWWDde8wKHcaPIH63RPk5ZEcBPEjUgBcpcY=",
     "is_active": true,
-    "permissions": [],
-    "password": "pbkdf2_sha256$20000$bM4JJzZQK3wn$MkAPyjze0RM22t5xY0KOnijYVfRX/P9rwJMzD/uKL8I=",
     "first_name": "",
-    "last_name": ""
+    "patronymic": "",
+    "role": "patient",
+    "last_name": "",
+    "email": "admin@site.com",
+    "last_login": "2015-10-14T05:33:32.310Z",
+    "is_superuser": true
   },
-  "model": "users.user"
+  "pk": 1
 },
 {
-  "pk": 2,
+  "model": "users.user",
   "fields": {
-    "patronymic": "\u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447",
-    "role_object_id": 1,
-    "role_content_type": 12,
-    "email": "ivan@site.com",
-    "last_login": null,
-    "is_superuser": false,
+    "password": "pbkdf2_sha256$20000$39iigV9HEXO8$I0vLE3f8p4Rn95YaHMHMZT3I3QEEU1Mfi3Q/7NcsFM4=",
     "is_active": true,
-    "permissions": [],
-    "password": "12345",
     "first_name": "\u0418\u0432\u0430\u043d",
-    "last_name": "\u0418\u0432\u0430\u043d\u043e\u0432"
+    "patronymic": "\u0412\u0430\u043b\u0435\u0440\u044c\u0435\u0432\u0438\u0447",
+    "role": "doctor",
+    "last_name": "\u041a\u043e\u0437\u043b\u043e\u0432",
+    "email": "kozlov@site.com",
+    "last_login": "2015-10-14T05:29:22.483Z",
+    "is_superuser": false
   },
-  "model": "users.user"
+  "pk": 2
 },
 {
-  "pk": 3,
+  "model": "users.user",
   "fields": {
-    "patronymic": "\u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447",
-    "role_object_id": 1,
-    "role_content_type": 14,
-    "email": "petr@site.com",
-    "last_login": null,
-    "is_superuser": false,
+    "password": "pbkdf2_sha256$20000$5oazJBrt2MeU$k5ONrxiIFR//HLGzPBQ8I9/bn2eGPFHZyL6kWUNtySo=",
     "is_active": true,
-    "permissions": [],
-    "password": "12345",
-    "first_name": "\u041f\u0435\u0442\u0440",
-    "last_name": "\u041f\u0435\u0442\u0440\u043e\u0432"
-  },
-  "model": "users.user"
-},
-{
-  "pk": 4,
-  "fields": {
+    "first_name": "\u0418\u0432\u0430\u043d",
     "patronymic": "\u041f\u0435\u0442\u0440\u043e\u0432\u0438\u0447",
-    "role_object_id": 2,
-    "role_content_type": 14,
-    "email": "grigoriy@site.com",
-    "last_login": null,
-    "is_superuser": false,
-    "is_active": true,
-    "permissions": [],
-    "password": "12345",
-    "first_name": "\u0413\u0440\u0438\u0433\u043e\u0440\u0438\u0439",
-    "last_name": "\u041a\u0443\u0437\u043d\u0435\u0446\u043e\u0432"
+    "role": "doctor",
+    "last_name": "\u0418\u0432\u0430\u043d\u043e\u0432",
+    "email": "ivanov@site.com",
+    "last_login": "2015-10-14T05:33:09.731Z",
+    "is_superuser": false
   },
-  "model": "users.user"
+  "pk": 3
 },
 {
-  "pk": 5,
+  "model": "users.user",
   "fields": {
-    "patronymic": "\u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432\u043d\u0430",
-    "role_object_id": 3,
-    "role_content_type": 14,
-    "email": "olga@site.com",
-    "last_login": null,
-    "is_superuser": false,
+    "password": "pbkdf2_sha256$20000$uHjpNB1AcMj0$2k0npVtKhEY9nsJIhs84QJMDB68dvB3VXH7yp3c+WJ8=",
     "is_active": true,
-    "permissions": [],
-    "password": "12345",
     "first_name": "\u041e\u043b\u044c\u0433\u0430",
-    "last_name": "\u041f\u0435\u0442\u0440\u043e\u0432\u0430"
+    "patronymic": "\u041f\u0435\u0442\u0440\u043e\u0432\u043d\u0430",
+    "role": "doctor",
+    "last_name": "\u0420\u0430\u0431\u0438\u043d\u043e\u0432\u0438\u0447",
+    "email": "rabinovich@site.com",
+    "last_login": "2015-10-14T05:03:43Z",
+    "is_superuser": false
   },
-  "model": "users.user"
+  "pk": 4
 },
 {
-  "pk": 1,
-  "fields": {},
-  "model": "users.patient"
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$20000$Q0592bBppG3J$BgHFA8ittmXtmvOvHlwVRYHRwcjy3cH7CwFrxOTS0oc=",
+    "is_active": true,
+    "first_name": "\u0424\u0435\u0434\u043e\u0440",
+    "patronymic": "\u0413\u0435\u043d\u0430\u0434\u044c\u0435\u0432\u0438\u0447",
+    "role": "doctor",
+    "last_name": "\u041a\u0443\u0437\u043d\u0435\u0446\u043e\u0432",
+    "email": "fedor@site.com",
+    "last_login": "2015-10-14T05:05:03Z",
+    "is_superuser": false
+  },
+  "pk": 5
 },
 {
-  "pk": 1,
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$20000$IfFSgLNsGwpQ$BVEw/Un1PieOedn7qq2A3/f/Taum/ugPO2Lov9/JzSc=",
+    "is_active": true,
+    "first_name": "\u0418\u043b\u044c\u044f",
+    "patronymic": "\u0422\u0430\u0440\u0430\u0441\u043e\u0432\u0438\u0447",
+    "role": "doctor",
+    "last_name": "\u0420\u0443\u0434\u0430\u043a\u043e\u0432",
+    "email": "rudakov@site.com",
+    "last_login": "2015-10-14T05:07:50Z",
+    "is_superuser": false
+  },
+  "pk": 6
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$20000$1iWSo4CscF3d$ptoyQdXvxKJiQnLqp8NbwDtharm7fEZKtfF7k6sq3Gc=",
+    "is_active": true,
+    "first_name": "\u0412\u0430\u0441\u0438\u043b\u0438\u0439",
+    "patronymic": "\u0421\u0435\u043c\u0435\u043d\u043e\u0432\u0438\u0447",
+    "role": "doctor",
+    "last_name": "\u0411\u0430\u0440\u0430\u043d\u043e\u0432",
+    "email": "baranov@site.com",
+    "last_login": "2015-10-14T05:28:45.040Z",
+    "is_superuser": false
+  },
+  "pk": 7
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$20000$1jfvcHPggCd3$z7sc+tDgNAdIW7bz5OgMV0iTLkjrMctuGJUdUAGxPk8=",
+    "is_active": true,
+    "first_name": "\u0414\u043c\u0438\u0442\u0440\u0438\u0439",
+    "patronymic": "\u0410\u043d\u0430\u0442\u043e\u043b\u044c\u0435\u0432\u0438\u0447",
+    "role": "patient",
+    "last_name": "\u0411\u0443\u0433\u0443\u043d\u043e\u0432",
+    "email": "bugunov@site.com",
+    "last_login": "2015-10-14T05:24:15.422Z",
+    "is_superuser": false
+  },
+  "pk": 8
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$20000$xhJm6w7QHqyy$biquPXJsBTvwADkZkmLFLi6P3j3CfUXNcHpSrKYULos=",
+    "is_active": true,
+    "first_name": "\u041f\u043e\u0440\u0444\u0438\u0440\u0438\u0439",
+    "patronymic": "\u041f\u0435\u0442\u0440\u043e\u0432\u0438\u0447",
+    "role": "patient",
+    "last_name": "\u041a\u0430\u0439\u0440\u043e\u0432",
+    "email": "kairov@site.com",
+    "last_login": "2015-10-14T05:25:34.706Z",
+    "is_superuser": false
+  },
+  "pk": 9
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$20000$GIrSSHHvuwO4$YRP3RRI059xG0FaWI03Ob2rf+oVffek5jEsuy1GClAQ=",
+    "is_active": true,
+    "first_name": "\u0413\u043b\u0435\u0431",
+    "patronymic": "\u0410\u043d\u0430\u0442\u043e\u043b\u044c\u0435\u0432\u0438\u0447",
+    "role": "patient",
+    "last_name": "\u041a\u043e\u043b\u0435\u0441\u043e\u0432",
+    "email": "kolesov@site.com",
+    "last_login": "2015-10-14T05:27:51.839Z",
+    "is_superuser": false
+  },
+  "pk": 10
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 2
+  },
+  "pk": 1
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 3
+  },
+  "pk": 2
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 4
+  },
+  "pk": 3
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 5
+  },
+  "pk": 4
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 6
+  },
+  "pk": 5
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 8
+  },
+  "pk": 6
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 9
+  },
+  "pk": 7
+},
+{
+  "model": "users.patient",
+  "fields": {
+    "user": 10
+  },
+  "pk": 8
+},
+{
+  "model": "users.speciality",
   "fields": {
     "name": "\u041f\u0441\u0438\u0445\u0438\u0430\u0442\u0440"
   },
-  "model": "users.speciality"
+  "pk": 1
 },
 {
-  "pk": 2,
+  "model": "users.speciality",
   "fields": {
     "name": "\u0412\u0435\u043d\u0435\u0440\u043e\u043b\u043e\u0433"
   },
-  "model": "users.speciality"
+  "pk": 2
 },
 {
-  "pk": 3,
+  "model": "users.speciality",
+  "fields": {
+    "name": "\u0413\u0438\u043d\u0435\u043a\u043e\u043b\u043e\u0433"
+  },
+  "pk": 3
+},
+{
+  "model": "users.speciality",
   "fields": {
     "name": "\u041d\u0435\u0440\u0432\u043e\u043f\u0430\u0442\u043e\u043b\u043e\u0433"
   },
-  "model": "users.speciality"
+  "pk": 4
 },
 {
-  "pk": 1,
+  "model": "users.speciality",
   "fields": {
+    "name": "\u0423\u0440\u043e\u043b\u043e\u0433"
+  },
+  "pk": 5
+},
+{
+  "model": "users.speciality",
+  "fields": {
+    "name": "\u041c\u0430\u043c\u043c\u043e\u043b\u043e\u0433"
+  },
+  "pk": 6
+},
+{
+  "model": "users.doctor",
+  "fields": {
+    "speciality": 1,
     "is_chief_doctor": true,
-    "speciality": 1
+    "user": 2
   },
-  "model": "users.doctor"
+  "pk": 1
 },
 {
-  "pk": 2,
+  "model": "users.doctor",
   "fields": {
+    "speciality": 2,
     "is_chief_doctor": false,
-    "speciality": 2
+    "user": 3
   },
-  "model": "users.doctor"
+  "pk": 2
 },
 {
-  "pk": 3,
+  "model": "users.doctor",
   "fields": {
+    "speciality": 3,
     "is_chief_doctor": false,
-    "speciality": 3
+    "user": 4
   },
-  "model": "users.doctor"
+  "pk": 3
+},
+{
+  "model": "users.doctor",
+  "fields": {
+    "speciality": 6,
+    "is_chief_doctor": false,
+    "user": 5
+  },
+  "pk": 4
+},
+{
+  "model": "users.doctor",
+  "fields": {
+    "speciality": 5,
+    "is_chief_doctor": false,
+    "user": 7
+  },
+  "pk": 5
+},
+{
+  "model": "users.doctor",
+  "fields": {
+    "speciality": 4,
+    "is_chief_doctor": false,
+    "user": 6
+  },
+  "pk": 6
 }
 ]

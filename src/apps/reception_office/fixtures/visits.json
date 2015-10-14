@@ -1,0 +1,32 @@
+[
+{
+  "pk": 1,
+  "model": "reception_office.visit",
+  "fields": {
+    "doctor": 2,
+    "date": "2015-10-15",
+    "patient": 6,
+    "visit_hour": 1
+  }
+},
+{
+  "pk": 2,
+  "model": "reception_office.visit",
+  "fields": {
+    "doctor": 5,
+    "date": "2015-10-16",
+    "patient": 7,
+    "visit_hour": 4
+  }
+},
+{
+  "pk": 3,
+  "model": "reception_office.visit",
+  "fields": {
+    "doctor": 5,
+    "date": "2015-10-16",
+    "patient": 8,
+    "visit_hour": 1
+  }
+}
+]

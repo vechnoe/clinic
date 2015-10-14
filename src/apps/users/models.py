@@ -2,20 +2,26 @@ from datetime import date
 
 from django.db import models
 from django.db.models import Q
-from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, post_save
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey, \
-    GenericRelation
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
+from django.conf import settings
+
+from rest_framework.authtoken.models import Token
 
 from timetable.models import Timetable
-from users.exceptions import RoleNotFound
 
-ROLE_NAMES = {
-    'patient': 'Пациент',
-    'doctor': 'Врач',
-}
+
+PATIENT = 'patient'
+DOCTOR = 'doctor'
+
+ROLES = (
+    (PATIENT, 'Пациент'),
+    (DOCTOR, 'Врач'))
 
 
 class UserManager(BaseUserManager):
@@ -34,19 +40,6 @@ class UserManager(BaseUserManager):
                                 is_superuser=True, is_active=True)
 
 
-class Permission(models.Model):
-    code_name = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey(ContentType, related_name='+')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Допуск'
-        verbose_name_plural = 'Допуски'
-
-
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(
@@ -55,43 +48,29 @@ class User(AbstractBaseUser):
         verbose_name='Фамилия', max_length=30, blank=True)
     patronymic = models.CharField(
         verbose_name='Отчество', max_length=30, blank=True)
-
-    role_content_type = models.ForeignKey(ContentType, null=True, blank=True)
-    role_object_id = models.PositiveIntegerField(null=True, blank=True)
-    role = GenericForeignKey('role_content_type', 'role_object_id')
-
+    role = models.CharField(
+        verbose_name='Роль', choices=ROLES,
+        default=PATIENT, max_length=100)
     is_superuser = models.BooleanField(
         verbose_name='Администратор', default=False)
-    is_active = models.BooleanField(default=False)
-
-    permissions = models.ManyToManyField(
-        Permission, verbose_name='Права', blank=True)
+    is_active = models.BooleanField(default=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
 
-    @property
-    def is_staff(self):
-        return self.is_superuser
+    class Meta:
+        verbose_name = u'Пользователь'
+        verbose_name_plural = u'Пользователи'
+
+    def __str__(self):
+        return self.short_name
 
     def get_full_name(self):
         return '%s %s %s' % (self.last_name, self.first_name, self.patronymic)
 
     def get_short_name(self):
         return self.email
-
-    def get_role(self, role=None, *args, **kwargs):
-        if role is None:
-            return self.role
-
-        if self.role is None:
-            raise RoleNotFound('Role is None')
-
-        if self.role.shortcut != role:
-            raise RoleNotFound('%s role not found' % role)
-
-        return self.role
 
     def has_module_perms(self, app_label):
         if self.is_active and self.is_superuser:
@@ -115,40 +94,52 @@ class User(AbstractBaseUser):
             code_name=code_name
         ).exists()
 
-    class Meta:
-        verbose_name = u'Пользователь'
-        verbose_name_plural = u'Пользователи'
-
-
-class Role(models.Model):
-    user = GenericRelation(
-        'User',
-        content_type_field='role_content_type',
-        object_id_field='role_object_id'
-    )
-
-    class Meta:
-        abstract = True
-
-    @classmethod
-    def short_name(cls):
-        return ROLE_NAMES[cls.__name__.lower()]
-
     @property
-    def shortcut(self):
-        return self.__class__.__name__.lower()
-
-    def get_content_type(self):
-        return ContentType.objects.get_for_model(self)
-
-
-class Patient(Role):
-    def __str__(self):
-        return 'Пациент: %s' % self.user.first().get_full_name()
+    def is_staff(self):
+        return self.is_superuser
 
     @property
     def full_name(self):
-        return self.user.first().get_full_name()
+        return self.get_full_name()
+
+    @property
+    def short_name(self):
+        return self.get_short_name()
+
+    @staticmethod
+    def post_save(sender, instance, created, *args, **kwargs):
+        if created:
+            template = get_template('users/mail/letter.html')
+
+            context = Context({
+                'name': instance.full_name,
+                'login': instance.short_name,
+                'password': instance.password
+            })
+
+            to, from_email = instance.email, settings.DEFAULT_FROM_EMAIL
+            content = template.render(context)
+            msg = EmailMultiAlternatives(
+                '[Учетные данные]', content, from_email, [to]
+            )
+            msg.attach_alternative(content, "text/html")
+            msg.send()
+
+
+post_save.connect(sender=User, receiver=User.post_save)
+
+
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
+
+class Patient(models.Model):
+    user = models.ForeignKey('User', verbose_name='Пользователь')
+
+    def __str__(self):
+        return 'Пациент: %s' % self.user.full_name
 
     class Meta:
         verbose_name = 'Пациент'
@@ -167,7 +158,8 @@ class Speciality(models.Model):
         return self.name
 
 
-class Doctor(Role):
+class Doctor(models.Model):
+    user = models.ForeignKey('User', verbose_name='Пользователь')
     speciality = models.ForeignKey('Speciality', verbose_name='Специализация')
     is_chief_doctor = models.BooleanField(
         default=False, verbose_name='Главврач')
@@ -179,14 +171,8 @@ class Doctor(Role):
     def __str__(self):
         if not self.is_chief_doctor:
             return 'Врач-%s: %s' % (
-                self.speciality.__str__().lower(), self.full_name)
-        return 'Главврач: %s' % self.full_name
-
-    @property
-    def full_name(self):
-        if self.user.exists():
-            return self.user.first().get_full_name()
-        return ''
+                self.speciality.__str__().lower(), self.user.full_name)
+        return 'Главврач: %s' % self.user.full_name
 
     @classmethod
     def get_chief_doctor(cls):
@@ -198,15 +184,21 @@ class Doctor(Role):
             sender.objects.filter(
                 is_chief_doctor=True).update(is_chief_doctor=False)
 
-    def get_available_hours(self, date):
+    def get_available_hours(self, visit_date):
+        """
+        :param visit_date: must be an instance of datetime.datetime
+        :return: queryset with unused visit hours
+        """
         timetable = Timetable.get_default()
-        working_hours = timetable.get_working_hours(date)
-        if working_hours.exists():
-            return working_hours.exclude(
-                Q(visit__doctor_id=self.pk) &
-                Q(visit__date=date)
-            )
-        return working_hours
+        # TODO: Add checking visit hour >= current hour
+        if visit_date.date() >= date.today():
+            working_hours = timetable.get_working_hours(visit_date)
+            if working_hours.exists():
+                return working_hours.exclude(
+                    Q(visit__doctor_id=self.pk) &
+                    Q(visit__date=visit_date)
+                )
+            return working_hours
 
 pre_save.connect(sender=Doctor, receiver=Doctor.pre_save)
 
