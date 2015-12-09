@@ -18,7 +18,7 @@ requirements:
 
 loaddata:
 	find src/apps/users -name 'users.json' -exec $(PYTHON) manage.py loaddata {} \;
-	find src/apps/products -name '*.json' -exec $(PYTHON) manage.py loaddata {} \;
+	find src/apps/* -name '*.json' -exec $(PYTHON) manage.py loaddata {} \;
 
 create_database:
 	$(PYTHON) manage.py syncdb --noinput
