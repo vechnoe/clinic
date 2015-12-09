@@ -49,6 +49,7 @@ test:
 clean_temp:
 	find . -name '*.pyc' -delete
 	rm -rf .coverage dist docs/_build htmlcov MANIFEST
+	rm -rf media/
 
 clean_db:
 	find . -name '*.sqlite3' -delete
