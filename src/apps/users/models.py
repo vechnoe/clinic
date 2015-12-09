@@ -201,4 +201,3 @@ class Doctor(models.Model):
             return working_hours
 
 pre_save.connect(sender=Doctor, receiver=Doctor.pre_save)
-

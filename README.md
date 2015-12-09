@@ -53,12 +53,11 @@ Django Rest Framework 3.0
 ```
 $ git clone git://github.com/vechnoe/clinic
 $ cd clinic
-$ virtualenv -p python3.4 env --no-site-packages
-$ source env/bin/activate
-$ make install
-$ make create_database
+$ make
 $ make run
 ```
+
+Приложение будет доступно по адресу: *localhost:8000*
 
 Логин админа admin@site.com
 Пароль админа 12345

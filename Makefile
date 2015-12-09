@@ -1,5 +1,24 @@
-export PYTHONPATH:=.:$(PYTHONPATH)
-export DJANGO_SETTINGS_MODULE:=src.settings
+PROJECT_DIR=$(shell pwd)
+VENV_DIR?=$(PROJECT_DIR)/.env
+PIP?=$(VENV_DIR)/bin/pip
+PYTHON?=$(VENV_DIR)/bin/python
+NOSE?=$(VENV_DIR)/bin/nosetests
+
+.PHONY: all clean test run requirements install virtualenv
+
+all: virtualenv install create_database loaddata
+
+virtualenv:
+	virtualenv -p python3 $(VENV_DIR) --no-site-packages
+
+install: requirements
+
+requirements:
+	$(PIP) install -r $(PROJECT_DIR)/requirements.txt
+
+loaddata:
+	find src/apps/users -name 'users.json' -exec $(PYTHON) manage.py loaddata {} \;
+	find src/apps/products -name '*.json' -exec $(PYTHON) manage.py loaddata {} \;
 
 create_database:
 	./manage.py syncdb --noinput
@@ -7,33 +26,34 @@ create_database:
 	find src/apps -name '*.json' -exec ./manage.py loaddata {} \;
 
 create_admin:
-	echo "from users.models import User; User.objects.create_superuser('admin@site.com', '12345')" | python manage.py shell
-
-test:
-	nosetests -v
-
-coverage:
-	coverage erase
-	coverage run manage.py test  -v 2 src
-	coverage html
-
-clean:
-	find . -name '*.pyc' -delete
-	find . -name __pycache__ -delete
-	rm -rf .coverage dist docs/_build htmlcov MANIFEST
-	find . -name '*.sqlite3' -delete
+	echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@site.com', '12345')" | $(PYTHON) manage.py shell
 
 run:
-	./manage.py runserver
+	$(PYTHON) manage.py runserver localhost:8000
+
+migrations:
+	$(PYTHON) manage.py makemigrations
+
+migrate:
+	$(PYTHON) manage.py migrate
 
 collect:
-	./manage.py collectstatic
+	$(PYTHON) manage.py collectstatic
 
 shell:
-	./manage.py shell
+	$(PYTHON) manage.py shell
 
-install:
-	pip install -r requirements.txt
+test:
+	$(PYTHON) manage.py test src/apps --verbosity=1 --logging-level=ERROR
 
+clean_temp:
+	find . -name '*.pyc' -delete
+	rm -rf .coverage dist docs/_build htmlcov MANIFEST
 
+clean_db:
+	find . -name '*.sqlite3' -delete
 
+clean_venv:
+	rm -rf $(VENV_DIR)
+
+clean: clean_temp clean_venv clean_db
