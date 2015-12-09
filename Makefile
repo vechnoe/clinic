@@ -17,7 +17,7 @@ requirements:
 	$(PIP) install -r $(PROJECT_DIR)/requirements.txt
 
 loaddata:
-	find src/apps -name '*.json' -exec ./manage.py loaddata {} \;
+	find src/apps -name '*.json' -exec $(PYTHON) manage.py loaddata {} \;
 
 create_database:
 	$(PYTHON) manage.py syncdb --noinput
