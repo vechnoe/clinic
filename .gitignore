@@ -1,6 +1,6 @@
 media/
 static_collected/
-env/
+.env/
 logs/
 src/static/build/
 src/static/bin/

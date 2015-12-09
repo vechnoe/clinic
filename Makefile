@@ -21,9 +21,9 @@ loaddata:
 	find src/apps/products -name '*.json' -exec $(PYTHON) manage.py loaddata {} \;
 
 create_database:
-	./manage.py syncdb --noinput
-	./manage.py migrate --noinput
-	find src/apps -name '*.json' -exec ./manage.py loaddata {} \;
+	$(PYTHON) manage.py syncdb --noinput
+	$(PYTHON) manage.py migrate --noinput
+	find src/apps -name '*.json' -exec $(PYTHON) manage.py loaddata {} \;
 
 create_admin:
 	echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@site.com', '12345')" | $(PYTHON) manage.py shell
